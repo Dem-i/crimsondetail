@@ -51,5 +51,11 @@ def book_appointment():
     db.session.commit()
     return jsonify({'success': True, 'message': 'Appointment booked successfully!'})
 
+@app.route('/admin')
+def admin():
+    appointments = Appointment.query.order_by(Appointment.date, Appointment.time).all()
+    return render_template('admin.html', appointments=appointments)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
