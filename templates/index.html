@@ -1,53 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Book an Appointment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimson Detail Co.</title>
+  <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Book Your Appointment</h1>
-  <form id="bookingForm">
-    <label>Full Name:</label><br>
-    <input type="text" name="name" required><br><br>
+  <header>
+    <h1>Crimson Detail Co.</h1>
+    <p class="tagline">Strength. Precision. Legacy.</p>
+    <p class="subtagline">Built by Dad. Inspired by Rose.</p>
+  </header>
 
-    <label>Phone Number:</label><br>
-    <input type="text" name="phone" required><br><br>
+  <section class="intro">
+    <h2>Mobile Auto Detailing That Comes to You</h2>
+    <ul>
+      <li>✅ Interior & Exterior Detailing</li>
+      <li>✅ Deep Vacuuming, Shampoo, and Stain Removal</li>
+      <li>✅ Hand Wash & Professional-Grade Wax Application</li>
+      <li>✅ Tire Shine, Trim Restore, and Crystal Clear Windows</li>
+      <li>✅ Family-Friendly Service - Child Seat Cleaning Available</li>
+      <li>✅ 15% Discount for Military, Veterans, First Responders, Teachers & Public Service Workers</li>
+    </ul>
+  </section>
 
-    <label>Vehicle Info:</label><br>
-    <input type="text" name="vehicle" required><br><br>
+  <section class="booking">
+    <h2>Book Your Appointment</h2>
+    <form action="/submit" method="post">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required><br>
 
-    <label>Date:</label><br>
-    <input type="date" name="date" required><br><br>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required><br>
 
-    <label>Time:</label><br>
-    <input type="time" name="time" required><br><br>
+      <label for="vehicle">Vehicle Info:</label>
+      <input type="text" id="vehicle" name="vehicle" required><br>
 
-    <button type="submit">Submit</button>
-  </form>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required><br>
 
-  <p id="responseMessage"></p>
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required><br>
 
-  <script>
-    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-      const form = e.target;
-      const data = {
-        name: form.name.value,
-        phone: form.phone.value,
-        vehicle: form.vehicle.value,
-        date: form.date.value,
-        time: form.time.value,
-      };
+  <footer>
+    <p>&copy; 2025 Crimson Detail Co. | Cartersville, GA</p>
+  </footer>
 
-      const res = await fetch('/api/book', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      const result = await res.json();
-      document.getElementById('responseMessage').textContent = result.message;
-    });
-  </script>
+  <script src="/static/script.js"></script>
 </body>
 </html>
