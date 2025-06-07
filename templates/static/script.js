@@ -18,10 +18,28 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // You can expand this to send the form data to a backend later
-    confirmation.textContent = `Thank you, ${name}. Your appointment for ${vehicle} on ${date} at ${time} has been submitted.`;
-    form.reset();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Send data to backend
+    fetch("/api/book", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, phone, vehicle, date, time })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          confirmation.textContent = `✅ Thank you, ${name}. Your appointment for ${vehicle} on ${date} at ${time} has been booked!`;
+          form.reset();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert(`❌ ${data.message}`);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong while booking your appointment.");
+      });
   });
 
   // Auto-format phone input
