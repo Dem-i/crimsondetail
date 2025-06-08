@@ -14,44 +14,47 @@
     <p class="subtagline">Built by Dad. Inspired by Rose.</p>
   </header>
 
-  <section class="intro">
-    <h2>Mobile Auto Detailing That Comes to You</h2>
-    <ul>
-      <li>✅ Interior & Exterior Detailing</li>
-      <li>✅ Deep Vacuuming, Shampoo, and Stain Removal</li>
-      <li>✅ Hand Wash & Professional-Grade Wax Application</li>
-      <li>✅ Tire Shine, Trim Restore, and Crystal Clear Windows</li>
-      <li>✅ Family-Friendly Service - Child Seat Cleaning Available</li>
-      <li>✅ 15% Discount for Military, Veterans, First Responders, Teachers & Public Service Workers</li>
-    </ul>
-  </section>
+  <main>
+    <section class="intro">
+      <h2>Mobile Auto Detailing That Comes to You</h2>
+      <ul>
+        <li>✅ Interior & Exterior Detailing</li>
+        <li>✅ Deep Vacuuming, Shampoo, and Stain Removal</li>
+        <li>✅ Hand Wash & Professional-Grade Wax Application</li>
+        <li>✅ Tire Shine, Trim Restore, and Crystal Clear Windows</li>
+        <li>✅ Family-Friendly Service - Child Seat Cleaning Available</li>
+        <li>✅ 15% Discount for Military, Veterans, First Responders, Teachers & Public Service Workers</li>
+      </ul>
+    </section>
 
-  <section class="booking">
-    <h2>Book Your Appointment</h2>
-    <form id="appointmentForm" action="/submit" method="post">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required><br>
+    <section class="booking">
+      <h2>Book Your Appointment</h2>
+      <div id="confirmation" class="confirmation"></div>
+      <form id="appointmentForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
 
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required><br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
 
-      <label for="vehicle">Vehicle Info:</label>
-      <input type="text" id="vehicle" name="vehicle" required><br>
+        <label for="vehicle">Vehicle Info:</label>
+        <input type="text" id="vehicle" name="vehicle" required>
 
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
 
-      <label for="time">Time:</label>
-      <input type="time" id="time" name="time" required><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
 
-      <button type="submit">Submit</button>
-    </form>
-  </section>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Crimson Detail Co. | Cartersville, GA</p>
   </footer>
 
-  <script src="/static/script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
