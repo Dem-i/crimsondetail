@@ -1,4 +1,3 @@
-<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +6,34 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <h1>Admin - All Appointments</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Vehicle</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for appt in appointments %}
-      <tr>
-        <td>{{ appt.name }}</td>
-        <td>{{ appt.phone }}</td>
-        <td>{{ appt.vehicle }}</td>
-        <td>{{ appt.date }}</td>
-        <td>{{ appt.time }}</td>
-        <td>{{ appt.status }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <header>
+    <h1>Admin - All Appointments</h1>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Vehicle</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appt in appointments %}
+        <tr>
+          <td>{{ appt.name }}</td>
+          <td>{{ appt.phone }}</td>
+          <td>{{ appt.vehicle }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
 </body>
 </html>
