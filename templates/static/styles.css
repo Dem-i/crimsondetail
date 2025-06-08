@@ -1,81 +1,142 @@
-/* styles.css */
+/* Theme Colors */
+:root {
+  --crimson: #8b0000;
+  --gold: #ffd700;
+  --navy: #001f3f;
+  --black: #111;
+  --light-bg: #f4f4f9;
+}
 
+/* Base Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f9;
+  background-color: var(--light-bg);
   margin: 0;
   padding: 0;
-  color: #333;
+  color: var(--navy);
+  transition: background-color 0.3s ease;
 }
 
 header {
-  background-color: #8b0000;
+  background-color: var(--crimson);
   color: white;
   padding: 20px 0;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2.8em;
+  font-weight: bold;
 }
 
-.discount-banner {
-  background-color: #ffd700;
-  color: #8b0000;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.2em;
-  border-bottom: 2px solid #8b0000;
+.tagline, .subtagline {
+  font-style: italic;
+  margin: 4px 0;
 }
 
 main {
-  max-width: 600px;
+  max-width: 800px;
   margin: 30px auto;
   padding: 20px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 10px;
+  animation: fadeIn 0.7s ease-in;
 }
 
+h2 {
+  color: var(--crimson);
+}
+
+ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Form Styling */
 form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
 label {
-  margin-top: 15px;
   font-weight: bold;
+  color: var(--navy);
 }
 
-input, select, button {
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+input, button {
+  padding: 12px;
   font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--crimson);
+  box-shadow: 0 0 5px var(--crimson);
+  outline: none;
 }
 
 button {
-  background-color: #8b0000;
+  background-color: var(--navy);
   color: white;
   font-weight: bold;
-  margin-top: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: none;
 }
 
 button:hover {
-  background-color: #a30000;
+  background-color: var(--gold);
+  color: var(--black);
+}
+
+.confirmation {
+  background-color: var(--gold);
+  color: var(--crimson);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: none;
+}
+
+/* Table Styling (Admin Page) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid var(--navy);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--navy);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #eef3f8;
 }
 
 footer {
   text-align: center;
   padding: 20px;
-  margin-top: 40px;
-  background-color: #222;
+  background-color: var(--black);
   color: white;
   font-size: 0.9em;
+  margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
