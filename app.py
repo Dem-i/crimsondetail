@@ -56,6 +56,5 @@ def admin():
     appointments = Appointment.query.order_by(Appointment.date, Appointment.time).all()
     return render_template('admin.html', appointments=appointments)
 
-
 if __name__ == '__main__':
     app.run(debug=True)
