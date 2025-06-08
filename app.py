@@ -58,3 +58,10 @@ def admin():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+# Place this at the bottom of app.py, AFTER your models are defined
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run()
