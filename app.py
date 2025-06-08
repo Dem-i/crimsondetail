@@ -21,8 +21,7 @@ class Appointment(db.Model):
     time = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(20), default='pending')
 
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
 @app.route('/')
