@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("appointmentForm");
   const confirmation = document.getElementById("confirmation");
@@ -18,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Send data to backend
     fetch("/api/book", {
       method: "POST",
       headers: {
@@ -26,23 +23,24 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify({ name, phone, vehicle, date, time })
     })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          confirmation.textContent = `✅ Thank you, ${name}. Your appointment for ${vehicle} on ${date} at ${time} has been booked!`;
-          form.reset();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          alert(`❌ ${data.message}`);
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("Something went wrong while booking your appointment.");
-      });
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        confirmation.textContent = `✅ Thank you, ${name}. Your appointment for ${vehicle} on ${date} at ${time} has been booked!`;
+        confirmation.style.display = "block";
+        form.reset();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => confirmation.style.display = "none", 8000);
+      } else {
+        alert(`❌ ${data.message}`);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Something went wrong while booking your appointment.");
+    });
   });
 
-  // Auto-format phone input
   const phoneInput = document.getElementById("phone");
   phoneInput.addEventListener("input", function (e) {
     let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
