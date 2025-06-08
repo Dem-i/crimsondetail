@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from datetime import datetime
+from datetime import timedelta
 import os
 
 app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///appointments.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = os.urandom(24)  # Replace with a static key in production
+app.secret_key = os.urandom(24)
+app.permanent_session_lifetime = timedelta(minutes=5)
 
 db = SQLAlchemy(app)
 
@@ -31,6 +32,8 @@ def index():
 @app.route('/api/book', methods=['POST'])
 def book_appointment():
     data = request.get_json()
+    if not data:
+        return jsonify({'success': False, 'message': 'Invalid request.'}), 400
     existing = Appointment.query.filter_by(date=data['date'], time=data['time']).first()
     if existing:
         return jsonify({'success': False, 'message': 'Time slot already booked.'}), 409
@@ -51,7 +54,8 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        if username == 'admin' and password == 'password123':  # 🔒 Change this in production!
+        if username == 'admin' and password == 'password123':
+            session.permanent = True
             session['admin_logged_in'] = True
             return redirect('/admin')
         else:
@@ -60,7 +64,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop('admin_logged_in', None)
+    session.clear()
     return redirect(url_for('login'))
 
 @app.route('/admin')
