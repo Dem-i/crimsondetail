@@ -53,7 +53,7 @@ def book_appointment():
 
 @app.route('/admin')
 def admin():
-    appointments = Appointment.query.order_by(Appointment.date, Appointment.time).all()
+    appointments = Appointment.query.all()
     return render_template('admin.html', appointments=appointments)
 
 if __name__ == '__main__':
