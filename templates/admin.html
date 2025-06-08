@@ -1,12 +1,13 @@
+<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Admin - Appointments</title>
-  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <h1>Crimson Detail Co. - Booked Appointments</h1>
+  <h1>Admin - All Appointments</h1>
   <table>
     <thead>
       <tr>
@@ -19,15 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      {% for a in appointments %}
-        <tr>
-          <td>{{ a.name }}</td>
-          <td>{{ a.phone }}</td>
-          <td>{{ a.vehicle }}</td>
-          <td>{{ a.date }}</td>
-          <td>{{ a.time }}</td>
-          <td>{{ a.status }}</td>
-        </tr>
+      {% for appt in appointments %}
+      <tr>
+        <td>{{ appt.name }}</td>
+        <td>{{ appt.phone }}</td>
+        <td>{{ appt.vehicle }}</td>
+        <td>{{ appt.date }}</td>
+        <td>{{ appt.time }}</td>
+        <td>{{ appt.status }}</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
