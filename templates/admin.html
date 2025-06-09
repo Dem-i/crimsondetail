@@ -3,7 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin - Appointments</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    table {
+      width: 90%;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      background: #111;
+      color: #fff;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      background: crimson;
+    }
+    tr:nth-child(even) {
+      background: #1f1f1f;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+    a {
+      color: gold;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -15,22 +42,26 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Email</th>
           <th>Phone</th>
-          <th>Vehicle</th>
+          <th>Service</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {% for appt in appointments %}
         <tr>
           <td>{{ appt.name }}</td>
-          <td>{{ appt.phone }}</td>
-          <td>{{ appt.vehicle }}</td>
+          <td>{{ appt.email or 'N/A' }}</td>
+          <td>{{ appt.phone or 'N/A' }}</td>
+          <td>{{ appt.service }}</td>
           <td>{{ appt.date }}</td>
           <td>{{ appt.time }}</td>
-          <td>{{ appt.status }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="6">No appointments found.</td>
         </tr>
         {% endfor %}
       </tbody>
